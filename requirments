@@ -1,0 +1,4 @@
+ultralytics
+opencv-python
+Pillow
+# Note: tkinter ships with most Python installations; do NOT pip install tkinter

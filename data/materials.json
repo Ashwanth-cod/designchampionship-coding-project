@@ -1,0 +1,32 @@
+{
+  "materials": [
+    {
+      "name": "Plastic Bottle",
+      "type": "recycle",
+      "aliases": ["bottle", "plastic bottle", "pet bottle", "water bottle"],
+      "eco_tip": "Empty, rinse, and place in the recycling bin. Remove the cap if your local program requests it.",
+      "notes": "Check local guidelines for labels and caps."
+    },
+    {
+      "name": "Aluminum Can",
+      "type": "recycle",
+      "aliases": ["can", "tin can", "soda can", "aluminium can"],
+      "eco_tip": "Rinse and crush if space is limited; place in the recycling bin.",
+      "notes": "Highly recyclable with strong market value."
+    },
+    {
+      "name": "Banana Peel",
+      "type": "compost",
+      "aliases": ["banana peel", "banana"],
+      "eco_tip": "Add to your compost bin or pile.",
+      "notes": "Cut into smaller pieces to speed up composting."
+    },
+    {
+      "name": "Cardboard",
+      "type": "recycle",
+      "aliases": ["box", "cardboard", "carton"],
+      "eco_tip": "Flatten boxes to save space before recycling.",
+      "notes": "Remove tape or plastic if possible."
+    }
+  ]
+}
