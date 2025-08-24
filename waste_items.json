@@ -1,0 +1,189 @@
+[
+  {
+    "name": "Plastic Bottle",
+    "associates": [
+      "PET bottle",
+      "water bottle",
+      "drink container"
+    ],
+    "type": "recyclable",
+    "material": "plastic",
+    "common_sources": [
+      "kitchen",
+      "office",
+      "factory"
+    ],
+    "hazard_level": "low",
+    "recyclable_in": [
+      "USA",
+      "EU",
+      "Canada",
+      "India",
+      "Japan"
+    ],
+    "tips_3r": "Reduce single-use plastics; reuse bottles before recycling.",
+    "disposal_tips": "Rinse thoroughly to remove residue. Flatten the bottle. Place in the plastics recycling bin.",
+    "decomposition_time": "450 years",
+    "carbon_footprint": "82.8g CO₂ per 500ml bottle",
+    "toxicity": "Releases microplastics if burned or degraded",
+    "alternatives": [
+      "Stainless steel bottle",
+      "Glass bottle"
+    ],
+    "legal_restrictions": "EU mandates recycling of PET bottles by 2025",
+    "reuse_ideas": [
+      "Use as a planter",
+      "DIY bird feeder"
+    ],
+    "breakdown_process": "Breaks down into microplastics that persist in oceans",
+    "handling_precautions": "Avoid burning, as it releases toxic fumes",
+    "google_search": "https://www.google.com/search?q=Plastic+Bottle+disposal",
+    "popularity": "very common"
+  },
+  {
+    "name": "Banana Peel",
+    "associates": [
+      "fruit peel",
+      "food waste",
+      "organic waste"
+    ],
+    "type": "compostable",
+    "material": "organic",
+    "common_sources": [
+      "kitchen"
+    ],
+    "hazard_level": "low",
+    "recyclable_in": [
+      "Global (compost)"
+    ],
+    "tips_3r": "Compost fruit and vegetable scraps to create natural fertilizer.",
+    "disposal_tips": "Add directly to your compost pile or community compost bin.",
+    "decomposition_time": "2–5 weeks",
+    "carbon_footprint": "Minimal, natural biodegradation",
+    "toxicity": "None",
+    "alternatives": [
+      "N/A (natural waste)"
+    ],
+    "legal_restrictions": "None, but not suitable for regular recycling bins",
+    "reuse_ideas": [
+      "Use peel as natural fertilizer",
+      "Shine leather shoes with inside of peel"
+    ],
+    "breakdown_process": "Decomposes naturally into compost and nutrients for soil",
+    "handling_precautions": "Avoid leaving peels outdoors, they attract pests",
+    "google_search": "https://www.google.com/search?q=Banana+Peel+disposal",
+    "popularity": "very common"
+  },
+  {
+    "name": "Aluminum Can",
+    "associates": [
+      "soda can",
+      "beer can",
+      "tin can"
+    ],
+    "type": "recyclable",
+    "material": "metal",
+    "common_sources": [
+      "kitchen",
+      "office"
+    ],
+    "hazard_level": "low",
+    "recyclable_in": [
+      "USA",
+      "EU",
+      "Canada",
+      "India",
+      "Australia"
+    ],
+    "tips_3r": "Recycle aluminum cans; they can be recycled infinitely without losing quality.",
+    "disposal_tips": "Rinse the can, crush it to save space, and place it in the recycling bin.",
+    "decomposition_time": "80–200 years",
+    "carbon_footprint": "1.5 kg CO₂ per kg aluminum produced",
+    "toxicity": "None in solid state, but harmful if burned",
+    "alternatives": [
+      "Glass bottles",
+      "Reusable containers"
+    ],
+    "legal_restrictions": "Many regions mandate deposit-return schemes for cans",
+    "reuse_ideas": [
+      "Use cans for DIY crafts",
+      "Make plant holders"
+    ],
+    "breakdown_process": "Oxidizes slowly but recyclable endlessly without quality loss",
+    "handling_precautions": "Be careful of sharp edges after opening",
+    "google_search": "https://www.google.com/search?q=Aluminum+Can+disposal",
+    "popularity": "very common"
+  },
+  {
+    "name": "Battery",
+    "associates": [
+      "AA battery",
+      "AAA battery",
+      "cell battery"
+    ],
+    "type": "hazardous",
+    "material": "chemical",
+    "common_sources": [
+      "household electronics",
+      "toys",
+      "remotes"
+    ],
+    "hazard_level": "high",
+    "recyclable_in": [
+      "Special collection centers worldwide"
+    ],
+    "tips_3r": "Use rechargeable batteries to reduce waste.",
+    "disposal_tips": "Take to a battery recycling drop-off point; never throw in trash.",
+    "decomposition_time": "100 years (leaks chemicals)",
+    "carbon_footprint": "1.5 kg CO₂ per 4 AA batteries produced",
+    "toxicity": "Releases lead, mercury, and cadmium into soil and water",
+    "alternatives": [
+      "Rechargeable batteries",
+      "Solar-powered devices"
+    ],
+    "legal_restrictions": "EU bans disposal of batteries in general waste",
+    "reuse_ideas": [
+      "None (safety concern)"
+    ],
+    "breakdown_process": "Leaches toxic metals into soil and groundwater",
+    "handling_precautions": "Wear gloves; avoid contact with leaking batteries",
+    "google_search": "https://www.google.com/search?q=Battery+disposal",
+    "popularity": "very common"
+  },
+  {
+    "name": "Old Mobile Phone",
+    "associates": [
+      "cell phone",
+      "smartphone",
+      "handset"
+    ],
+    "type": "e-waste",
+    "material": "mixed",
+    "common_sources": [
+      "household",
+      "office"
+    ],
+    "hazard_level": "high",
+    "recyclable_in": [
+      "E-waste centers worldwide"
+    ],
+    "tips_3r": "Donate or trade in old phones before recycling.",
+    "disposal_tips": "Drop off at an e-waste recycling facility or electronics store collection point.",
+    "decomposition_time": "1000+ years",
+    "carbon_footprint": "55 kg CO₂ per phone production",
+    "toxicity": "Contains lead, cadmium, arsenic, and flame retardants",
+    "alternatives": [
+      "Use phones longer before upgrading",
+      "Buy refurbished models"
+    ],
+    "legal_restrictions": "Many countries have mandatory e-waste recycling laws",
+    "reuse_ideas": [
+      "Repurpose as a music player",
+      "Turn into a home security camera"
+    ],
+    "breakdown_process": "Slow breakdown; toxic chemicals leach into environment",
+    "handling_precautions": "Do not incinerate; remove battery before recycling",
+    "google_search": "https://www.google.com/search?q=Old+Mobile+Phone+disposal",
+    "popularity": "very common"
+  }
+]
