@@ -8,11 +8,9 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QFont, QColor, QPalette, QLinearGradient, QBrush
 from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QEasingCurve
 
-
 # ------------ Load JSON ------------
 with open("waste_items.json", "r", encoding="utf-8") as f:
     ITEMS = json.load(f)
-
 
 def search_item(query: str):
     query = query.lower().strip()
@@ -20,7 +18,6 @@ def search_item(query: str):
         if query == item["name"].lower() or query in [a.lower() for a in item["associates"]]:
             return item
     return None
-
 
 def find_suggestions(query: str):
     query = query.lower().strip()
@@ -32,7 +29,6 @@ def find_suggestions(query: str):
             matches.append(item["name"])
     return matches
 
-
 # ------------ App ------------
 class WasteSorterApp(QMainWindow):
     def __init__(self):
@@ -40,7 +36,7 @@ class WasteSorterApp(QMainWindow):
         self.setWindowTitle("♻️ Waste Sorter")
         self.resize(1400, 850)
 
-        # Dark gradient background (outside phone)
+        # Dark gradient background
         palette = QPalette()
         gradient = QLinearGradient(0, 0, 0, 1000)
         gradient.setColorAt(0.0, QColor("#0d0d0d"))
@@ -68,14 +64,13 @@ class WasteSorterApp(QMainWindow):
         left_layout.addWidget(title)
 
         self.suggestion_list = QListWidget()
-        self.suggestion_list.setMaximumHeight(160)
+        self.suggestion_list.setMaximumHeight(150)
         self.suggestion_list.setStyleSheet("""
             QListWidget {
                 background: #1e1e1e;
-                border-radius: 10px;
+                border-radius: 12px;
                 font-size: 14px;
                 color: white;
-                margin: 4px;
             }
             QListWidget::item { padding: 8px; }
             QListWidget::item:hover { background: #333; }
@@ -121,13 +116,13 @@ class WasteSorterApp(QMainWindow):
         left_layout.addWidget(btn)
 
         left_layout.addStretch()
-        main_layout.addLayout(left_layout, 3)  # 30%
+        main_layout.addLayout(left_layout, 3)  # 30% width
 
         # ===== Right: Phone Section =====
         self.phone = QFrame()
         self.phone.setStyleSheet("""
             QFrame {
-                background: black;   /* phone body */
+                background: black;
                 border-radius: 40px;
                 border: 6px solid #333;
             }
@@ -139,15 +134,15 @@ class WasteSorterApp(QMainWindow):
         self.phone_screen = QFrame()
         self.phone_screen.setStyleSheet("""
             QFrame {
-                background: #121212;   /* dark app screen */
+                background: #121212;
                 border-radius: 28px;
             }
         """)
         phone_layout = QVBoxLayout(self.phone_screen)
-        phone_layout.setContentsMargins(0, 0, 0, 0)
-        phone_layout.setSpacing(0)
+        phone_layout.setContentsMargins(10, 10, 10, 10)
+        phone_layout.setSpacing(10)
 
-        # --- App Header ---
+        # App header inside phone
         header = QLabel("EcoSort ♻️")
         header.setFont(QFont("Arial", 18, QFont.Bold))
         header.setAlignment(Qt.AlignCenter)
@@ -173,16 +168,15 @@ class WasteSorterApp(QMainWindow):
 
         scroll_content = QWidget()
         self.result_layout = QVBoxLayout(scroll_content)
+        self.result_layout.setContentsMargins(6, 6, 6, 6)
         scroll_content.setLayout(self.result_layout)
         self.scroll_area.setWidget(scroll_content)
 
         phone_layout.addWidget(self.scroll_area)
         phone_outer_layout.addWidget(self.phone_screen)
-        main_layout.addWidget(self.phone, 7)  # 70%
+        main_layout.addWidget(self.phone, 7)  # 70% width
 
         self.setCentralWidget(central)
-
-        # Initial entrance animation for phone
         self.animate_widget(self.phone, y_offset=100, duration=700)
 
     # ---------- Suggestions ----------
@@ -212,8 +206,6 @@ class WasteSorterApp(QMainWindow):
             return
 
         result = search_item(query)
-
-        # Clear old results
         for i in reversed(range(self.result_layout.count())):
             widget = self.result_layout.itemAt(i).widget()
             if widget:
@@ -224,16 +216,17 @@ class WasteSorterApp(QMainWindow):
                 if isinstance(value, list):
                     value = ", ".join(value)
 
-                # Use QTextBrowser for copyable + clickable links
                 text_box = QTextBrowser()
                 text_box.setFont(self.font_mid)
                 text_box.setOpenExternalLinks(True)
+                text_box.setMinimumHeight(90)
+                text_box.setFixedWidth(self.phone_screen.width() - 16)
                 text_box.setStyleSheet("""
                     QTextBrowser {
                         background: #1e1e1e;
                         border-radius: 10px;
                         padding: 10px;
-                        margin: 8px;
+                        margin: 6px 0;
                         color: white;
                         border: 1px solid #333;
                     }
@@ -246,16 +239,13 @@ class WasteSorterApp(QMainWindow):
                         color: #69f0ae;
                     }
                 """)
-
                 if "http" in str(value):
                     text_box.setHtml(f"<b style='color:#00e676'>{key.replace('_',' ').title()}:</b> "
                                      f"<a href='{value}'>{value}</a>")
                 else:
                     text_box.setHtml(f"<b style='color:#00e676'>{key.replace('_',' ').title()}:</b> {value}")
-
                 self.result_layout.addWidget(text_box)
                 self.animate_widget(text_box, y_offset=20, duration=400)
-
             self.scroll_area.show()
         else:
             box = QLabel("❌ Item not found")

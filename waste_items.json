@@ -1,189 +1,102 @@
 [
   {
     "name": "Plastic Bottle",
-    "associates": [
-      "PET bottle",
-      "water bottle",
-      "drink container"
-    ],
-    "type": "recyclable",
-    "material": "plastic",
-    "common_sources": [
-      "kitchen",
-      "office",
-      "factory"
-    ],
-    "hazard_level": "low",
-    "recyclable_in": [
-      "USA",
-      "EU",
-      "Canada",
-      "India",
-      "Japan"
-    ],
-    "tips_3r": "Reduce single-use plastics; reuse bottles before recycling.",
-    "disposal_tips": "Rinse thoroughly to remove residue. Flatten the bottle. Place in the plastics recycling bin.",
-    "decomposition_time": "450 years",
-    "carbon_footprint": "82.8g CO₂ per 500ml bottle",
-    "toxicity": "Releases microplastics if burned or degraded",
-    "alternatives": [
-      "Stainless steel bottle",
-      "Glass bottle"
-    ],
-    "legal_restrictions": "EU mandates recycling of PET bottles by 2025",
-    "reuse_ideas": [
-      "Use as a planter",
-      "DIY bird feeder"
-    ],
-    "breakdown_process": "Breaks down into microplastics that persist in oceans",
-    "handling_precautions": "Avoid burning, as it releases toxic fumes",
-    "google_search": "https://www.google.com/search?q=Plastic+Bottle+disposal",
-    "popularity": "very common"
+    "type": "Recyclable",
+    "associates": ["PET bottle", "soda bottle", "water bottle", "soft drink container", "juice bottle", "plastic beverage bottle", "mineral water bottle", "plastic soda container", "energy drink bottle", "disposable plastic bottle"],
+    "three_r_tip": "Reduce by using reusable bottles; Reuse for DIY projects or storage; Recycle through local collection bins.",
+    "disposal": "Empty, rinse, and place in recycling bin. Remove caps if required.",
+    "toxicity": "Non-toxic but harmful if burned (releases dioxins).",
+    "alternatives": ["Reusable stainless steel bottles", "Glass bottles"],
+    "handling_precautions": "Do not burn. Ensure bottle is clean before recycling."
   },
   {
     "name": "Banana Peel",
-    "associates": [
-      "fruit peel",
-      "food waste",
-      "organic waste"
-    ],
-    "type": "compostable",
-    "material": "organic",
-    "common_sources": [
-      "kitchen"
-    ],
-    "hazard_level": "low",
-    "recyclable_in": [
-      "Global (compost)"
-    ],
-    "tips_3r": "Compost fruit and vegetable scraps to create natural fertilizer.",
-    "disposal_tips": "Add directly to your compost pile or community compost bin.",
-    "decomposition_time": "2–5 weeks",
-    "carbon_footprint": "Minimal, natural biodegradation",
-    "toxicity": "None",
-    "alternatives": [
-      "N/A (natural waste)"
-    ],
-    "legal_restrictions": "None, but not suitable for regular recycling bins",
-    "reuse_ideas": [
-      "Use peel as natural fertilizer",
-      "Shine leather shoes with inside of peel"
-    ],
-    "breakdown_process": "Decomposes naturally into compost and nutrients for soil",
-    "handling_precautions": "Avoid leaving peels outdoors, they attract pests",
-    "google_search": "https://www.google.com/search?q=Banana+Peel+disposal",
-    "popularity": "very common"
+    "type": "Compostable",
+    "associates": ["fruit peel", "plantain peel", "banana skin", "organic waste banana", "ripe peel", "kitchen waste peel", "banana compost material", "banana husk", "fruit leftover banana", "compost peel"],
+    "three_r_tip": "Reduce waste by consuming fully; Reuse in gardening as fertilizer; Recycle via compost.",
+    "disposal": "Compost in home bin or municipal compost facility.",
+    "toxicity": "Non-toxic.",
+    "alternatives": ["None, natural material"],
+    "handling_precautions": "Avoid leaving peels on walkways to prevent slipping."
+  },
+  {
+    "name": "Glass Jar",
+    "type": "Recyclable",
+    "associates": ["mason jar", "food jar", "glass storage jar", "pickle jar", "jam jar", "sauce jar", "transparent glass container", "airtight glass jar", "preserve jar", "kitchen glass jar"],
+    "three_r_tip": "Reduce by buying in bulk; Reuse for storage or crafts; Recycle at glass collection bins.",
+    "disposal": "Rinse, remove metal lids, recycle with glass.",
+    "toxicity": "Non-toxic but hazardous if broken.",
+    "alternatives": ["Stainless steel containers", "Plastic jars (recyclable)"],
+    "handling_precautions": "Handle with care to avoid cuts."
+  },
+  {
+    "name": "Newspaper",
+    "type": "Recyclable",
+    "associates": ["newsprint", "old paper", "daily paper", "broadsheet", "tabloid", "waste paper", "printed news", "recyclable paper", "press sheets", "magazine-like paper"],
+    "three_r_tip": "Reduce by switching to digital; Reuse for packing or crafts; Recycle as paper waste.",
+    "disposal": "Tie in bundles and place in paper recycling bin.",
+    "toxicity": "Non-toxic but ink may smudge.",
+    "alternatives": ["Digital news", "Cloth packing materials"],
+    "handling_precautions": "Keep dry before recycling."
   },
   {
     "name": "Aluminum Can",
-    "associates": [
-      "soda can",
-      "beer can",
-      "tin can"
-    ],
-    "type": "recyclable",
-    "material": "metal",
-    "common_sources": [
-      "kitchen",
-      "office"
-    ],
-    "hazard_level": "low",
-    "recyclable_in": [
-      "USA",
-      "EU",
-      "Canada",
-      "India",
-      "Australia"
-    ],
-    "tips_3r": "Recycle aluminum cans; they can be recycled infinitely without losing quality.",
-    "disposal_tips": "Rinse the can, crush it to save space, and place it in the recycling bin.",
-    "decomposition_time": "80–200 years",
-    "carbon_footprint": "1.5 kg CO₂ per kg aluminum produced",
-    "toxicity": "None in solid state, but harmful if burned",
-    "alternatives": [
-      "Glass bottles",
-      "Reusable containers"
-    ],
-    "legal_restrictions": "Many regions mandate deposit-return schemes for cans",
-    "reuse_ideas": [
-      "Use cans for DIY crafts",
-      "Make plant holders"
-    ],
-    "breakdown_process": "Oxidizes slowly but recyclable endlessly without quality loss",
-    "handling_precautions": "Be careful of sharp edges after opening",
-    "google_search": "https://www.google.com/search?q=Aluminum+Can+disposal",
-    "popularity": "very common"
+    "type": "Recyclable",
+    "associates": ["soda can", "beer can", "energy drink can", "tin can", "soft drink can", "beverage aluminum container", "recyclable can", "pop can", "drink can", "fizzy can"],
+    "three_r_tip": "Reduce by using refillable drink bottles; Reuse for crafts; Recycle endlessly.",
+    "disposal": "Empty, rinse, and place in metal recycling.",
+    "toxicity": "Non-toxic.",
+    "alternatives": ["Glass bottles", "Reusable containers"],
+    "handling_precautions": "Avoid crushing with bare hands."
   },
   {
     "name": "Battery",
-    "associates": [
-      "AA battery",
-      "AAA battery",
-      "cell battery"
-    ],
-    "type": "hazardous",
-    "material": "chemical",
-    "common_sources": [
-      "household electronics",
-      "toys",
-      "remotes"
-    ],
-    "hazard_level": "high",
-    "recyclable_in": [
-      "Special collection centers worldwide"
-    ],
-    "tips_3r": "Use rechargeable batteries to reduce waste.",
-    "disposal_tips": "Take to a battery recycling drop-off point; never throw in trash.",
-    "decomposition_time": "100 years (leaks chemicals)",
-    "carbon_footprint": "1.5 kg CO₂ per 4 AA batteries produced",
-    "toxicity": "Releases lead, mercury, and cadmium into soil and water",
-    "alternatives": [
-      "Rechargeable batteries",
-      "Solar-powered devices"
-    ],
-    "legal_restrictions": "EU bans disposal of batteries in general waste",
-    "reuse_ideas": [
-      "None (safety concern)"
-    ],
-    "breakdown_process": "Leaches toxic metals into soil and groundwater",
-    "handling_precautions": "Wear gloves; avoid contact with leaking batteries",
-    "google_search": "https://www.google.com/search?q=Battery+disposal",
-    "popularity": "very common"
+    "type": "Hazardous",
+    "associates": ["AA battery", "AAA battery", "alkaline cell", "lithium battery", "coin cell", "dry cell", "rechargeable battery", "button battery", "power cell", "electronic battery"],
+    "three_r_tip": "Reduce by using rechargeable batteries; Reuse with proper recharging cycles; Recycle at hazardous waste centers.",
+    "disposal": "Take to e-waste or hazardous waste collection points.",
+    "toxicity": "Contains heavy metals (lead, cadmium, mercury).",
+    "alternatives": ["Solar-powered devices", "Rechargeable batteries"],
+    "handling_precautions": "Do not incinerate. Avoid leakage contact."
   },
   {
-    "name": "Old Mobile Phone",
-    "associates": [
-      "cell phone",
-      "smartphone",
-      "handset"
-    ],
-    "type": "e-waste",
-    "material": "mixed",
-    "common_sources": [
-      "household",
-      "office"
-    ],
-    "hazard_level": "high",
-    "recyclable_in": [
-      "E-waste centers worldwide"
-    ],
-    "tips_3r": "Donate or trade in old phones before recycling.",
-    "disposal_tips": "Drop off at an e-waste recycling facility or electronics store collection point.",
-    "decomposition_time": "1000+ years",
-    "carbon_footprint": "55 kg CO₂ per phone production",
-    "toxicity": "Contains lead, cadmium, arsenic, and flame retardants",
-    "alternatives": [
-      "Use phones longer before upgrading",
-      "Buy refurbished models"
-    ],
-    "legal_restrictions": "Many countries have mandatory e-waste recycling laws",
-    "reuse_ideas": [
-      "Repurpose as a music player",
-      "Turn into a home security camera"
-    ],
-    "breakdown_process": "Slow breakdown; toxic chemicals leach into environment",
-    "handling_precautions": "Do not incinerate; remove battery before recycling",
-    "google_search": "https://www.google.com/search?q=Old+Mobile+Phone+disposal",
-    "popularity": "very common"
+    "name": "Styrofoam Cup",
+    "type": "Non-recyclable",
+    "associates": ["foam cup", "disposable cup", "EPS cup", "takeaway foam cup", "coffee foam cup", "lightweight foam cup", "plastic foam container", "styrene cup", "expanded polystyrene cup", "single-use foam"],
+    "three_r_tip": "Reduce by carrying reusable cups; Reuse temporarily for crafts; Avoid recycling as most facilities reject it.",
+    "disposal": "Dispose in general trash.",
+    "toxicity": "May leach styrene; harmful if burned.",
+    "alternatives": ["Paper cups", "Reusable travel mugs"],
+    "handling_precautions": "Avoid hot drinks in styrofoam due to chemical leaching."
+  },
+  {
+    "name": "Cardboard Box",
+    "type": "Recyclable",
+    "associates": ["shipping box", "carton box", "corrugated box", "packing box", "storage box", "brown box", "parcel box", "flat cardboard", "kraft box", "foldable box"],
+    "three_r_tip": "Reduce by reusing boxes for shipping; Reuse in crafts or storage; Recycle as paper waste.",
+    "disposal": "Flatten and place in paper recycling bin.",
+    "toxicity": "Non-toxic.",
+    "alternatives": ["Plastic crates", "Reusable cloth bags"],
+    "handling_precautions": "Avoid wet cardboard in recycling."
+  },
+  {
+    "name": "Light Bulb",
+    "type": "Hazardous",
+    "associates": ["incandescent bulb", "CFL bulb", "LED bulb", "halogen bulb", "fluorescent bulb", "lamp bulb", "glass bulb", "tube light bulb", "compact fluorescent", "energy-saving bulb"],
+    "three_r_tip": "Reduce by using long-lasting LEDs; Reuse only in crafts; Recycle at hazardous waste centers.",
+    "disposal": "Special disposal for CFL/fluorescent; LEDs with e-waste.",
+    "toxicity": "CFLs contain mercury.",
+    "alternatives": ["LED bulbs"],
+    "handling_precautions": "Do not break. Handle with gloves."
+  },
+  {
+    "name": "Plastic Bag",
+    "type": "Non-recyclable",
+    "associates": ["shopping bag", "polybag", "grocery bag", "carry bag", "single-use bag", "thin plastic bag", "disposable plastic carry", "retail bag", "polyethylene bag", "supermarket bag"],
+    "three_r_tip": "Reduce by carrying reusable bags; Reuse as trash liners; Avoid recycling as most facilities reject them.",
+    "disposal": "Dispose with general waste.",
+    "toxicity": "Non-toxic but environmental hazard.",
+    "alternatives": ["Cloth bags", "Jute bags"],
+    "handling_precautions": "Keep away from children (suffocation risk)."
   }
 ]
