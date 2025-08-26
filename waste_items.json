@@ -1,102 +1,73 @@
 [
   {
-    "name": "Plastic Bottle",
-    "type": "Recyclable",
-    "associates": ["PET bottle", "soda bottle", "water bottle", "soft drink container", "juice bottle", "plastic beverage bottle", "mineral water bottle", "plastic soda container", "energy drink bottle", "disposable plastic bottle"],
-    "three_r_tip": "Reduce by using reusable bottles\nReuse for DIY projects or storage\nRecycle through local collection bins.",
-    "disposal": "Empty, rinse, and place in recycling bin. Remove caps if required.",
-    "toxicity": "Non-toxic but harmful if burned (releases dioxins).",
-    "alternatives": ["Reusable stainless steel bottles", "Glass bottles"],
-    "handling_precautions": "Do not burn. Ensure bottle is clean before recycling."
-  },
-  {
-    "name": "Banana Peel",
-    "type": "Compostable",
-    "associates": ["fruit peel", "plantain peel", "banana skin", "organic waste banana", "ripe peel", "kitchen waste peel", "banana compost material", "banana husk", "fruit leftover banana", "compost peel"],
-    "three_r_tip": "Reduce waste by consuming fully\nReuse in gardening as fertilizer\nRecycle via compost.",
-    "disposal": "Compost in home bin or municipal compost facility.",
-    "toxicity": "Non-toxic.",
-    "alternatives": ["None, natural material"],
-    "handling_precautions": "Avoid leaving peels on walkways to prevent slipping."
-  },
-  {
-    "name": "Glass Jar",
-    "type": "Recyclable",
-    "associates": ["mason jar", "food jar", "glass storage jar", "pickle jar", "jam jar", "sauce jar", "transparent glass container", "airtight glass jar", "preserve jar", "kitchen glass jar"],
-    "three_r_tip": "Reduce by buying in bulk\nReuse for storage or crafts\nRecycle at glass collection bins.",
-    "disposal": "Rinse, remove metal lids, recycle with glass.",
-    "toxicity": "Non-toxic but hazardous if broken.",
-    "alternatives": ["Stainless steel containers", "Plastic jars (recyclable)"],
-    "handling_precautions": "Handle with care to avoid cuts."
-  },
-  {
-    "name": "Newspaper",
-    "type": "Recyclable",
-    "associates": ["newsprint", "old paper", "daily paper", "broadsheet", "tabloid", "waste paper", "printed news", "recyclable paper", "press sheets", "magazine-like paper"],
-    "three_r_tip": "Reduce by switching to digital\nReuse for packing or crafts\nRecycle as paper waste.",
-    "disposal": "Tie in bundles and place in paper recycling bin.",
-    "toxicity": "Non-toxic but ink may smudge.",
-    "alternatives": ["Digital news", "Cloth packing materials"],
-    "handling_precautions": "Keep dry before recycling."
+    "name": "Plastic Bag",
+    "type": "Non-recyclable",
+    "associates": [
+      "shopping bag", "grocery bag", "single-use bag", "carry bag",
+      "retail plastic bag", "lightweight bag", "supermarket bag",
+      "thin plastic sheet bag", "market plastic bag", "store bag",
+      "non-biodegradable bag", "t-shirt bag"
+    ],
+    "three_r_tip": "Reduce by carrying cloth bags\nReuse as trash liners\nAvoid recycling as most facilities reject them.",
+    "disposal": "Dispose in general waste bin.",
+    "toxicity": "Non-toxic but harmful to animals and environment.",
+    "alternatives": ["Cloth bags", "Jute bags", "Paper bags"],
+    "handling_precautions": "Keep away from children due to suffocation risk."
   },
   {
     "name": "Aluminum Can",
     "type": "Recyclable",
-    "associates": ["soda can", "beer can", "energy drink can", "tin can", "soft drink can", "beverage aluminum container", "recyclable can", "pop can", "drink can", "fizzy can"],
-    "three_r_tip": "Reduce by using refillable drink bottles\nReuse for crafts\nRecycle endlessly.",
-    "disposal": "Empty, rinse, and place in metal recycling.",
-    "toxicity": "Non-toxic.",
-    "alternatives": ["Glass bottles", "Reusable containers"],
+    "associates": [
+      "soda can", "cola can", "beer can", "energy drink can",
+      "soft drink can", "carbonated drink can", "metal can",
+      "aluminium beverage container", "tin can", "drink can"
+    ],
+    "three_r_tip": "Reduce by using refillable bottles\nReuse for crafts\nRecycle infinitely via can recycling programs.",
+    "disposal": "Rinse and place in recycling bin.",
+    "toxicity": "Non-toxic but sharp edges can cut.",
+    "alternatives": ["Glass bottles", "Reusable bottles"],
     "handling_precautions": "Avoid crushing with bare hands."
   },
   {
-    "name": "Battery",
-    "type": "Hazardous",
-    "associates": ["AA battery", "AAA battery", "alkaline cell", "lithium battery", "coin cell", "dry cell", "rechargeable battery", "button battery", "power cell", "electronic battery"],
-    "three_r_tip": "Reduce by using rechargeable batteries\nReuse with proper recharging cycles\nRecycle at hazardous waste centers.",
-    "disposal": "Take to e-waste or hazardous waste collection points.",
-    "toxicity": "Contains heavy metals (lead, cadmium, mercury).",
-    "alternatives": ["Solar-powered devices", "Rechargeable batteries"],
-    "handling_precautions": "Do not incinerate. Avoid leakage contact."
-  },
-  {
-    "name": "Styrofoam Cup",
-    "type": "Non-recyclable",
-    "associates": ["foam cup", "disposable cup", "EPS cup", "takeaway foam cup", "coffee foam cup", "lightweight foam cup", "plastic foam container", "styrene cup", "expanded polystyrene cup", "single-use foam"],
-    "three_r_tip": "Reduce by carrying reusable cups\nReuse temporarily for crafts\nAvoid recycling as most facilities reject it.",
-    "disposal": "Dispose in general trash.",
-    "toxicity": "May leach styrene\nharmful if burned.",
-    "alternatives": ["Paper cups", "Reusable travel mugs"],
-    "handling_precautions": "Avoid hot drinks in styrofoam due to chemical leaching."
-  },
-  {
-    "name": "Cardboard Box",
+    "name": "Old Newspaper",
     "type": "Recyclable",
-    "associates": ["shipping box", "carton box", "corrugated box", "packing box", "storage box", "brown box", "parcel box", "flat cardboard", "kraft box", "foldable box"],
-    "three_r_tip": "Reduce by reusing boxes for shipping\nReuse in crafts or storage\nRecycle as paper waste.",
-    "disposal": "Flatten and place in paper recycling bin.",
+    "associates": [
+      "paper waste", "printed paper", "daily paper", "old gazette",
+      "magazine paper", "recyclable paper", "used newspaper",
+      "newsprint", "reading paper", "paper sheets", "books", "wrapping paper"
+    ],
+    "three_r_tip": "Reduce by reading digital versions\nReuse for wrapping or cleaning\nRecycle with paper products.",
+    "disposal": "Tie in bundles and send to paper recycling.",
     "toxicity": "Non-toxic.",
-    "alternatives": ["Plastic crates", "Reusable cloth bags"],
-    "handling_precautions": "Avoid wet cardboard in recycling."
+    "alternatives": ["Digital news", "Reusable cloth wrapping"],
+    "handling_precautions": "Avoid using for food wrapping."
   },
   {
-    "name": "Light Bulb",
-    "type": "Hazardous",
-    "associates": ["incandescent bulb", "CFL bulb", "LED bulb", "halogen bulb", "fluorescent bulb", "lamp bulb", "glass bulb", "tube light bulb", "compact fluorescent", "energy-saving bulb"],
-    "three_r_tip": "Reduce by using long-lasting LEDs\nReuse only in crafts\nRecycle at hazardous waste centers.",
-    "disposal": "Special disposal for CFL/fluorescent\nLEDs with e-waste.",
-    "toxicity": "CFLs contain mercury.",
-    "alternatives": ["LED bulbs"],
-    "handling_precautions": "Do not break. Handle with gloves."
-  },
-  {
-    "name": "Plastic Bag",
+    "name": "Broken Glass Bottle",
     "type": "Non-recyclable",
-    "three_r_tip": "Reduce by carrying reusable bags\nReuse as trash liners\nAvoid recycling as most facilities reject them.",
-    "disposal": "Dispose with general waste.",
-    "toxicity": "Non-toxic but environmental hazard.",
-    "alternatives": ["Cloth bags", "Jute bags"],
-    "handling_precautions": "Keep away from children (suffocation risk).",
-    "associates": ["shopping bag", "polybag", "grocery bag", "carry bag", "single-use bag", "thin plastic bag", "disposable plastic carry", "retail bag", "polyethylene bag", "supermarket bag"]
+    "associates": [
+      "shattered glass", "broken wine bottle", "beer glass shards",
+      "glass fragments", "cracked bottle", "glass waste",
+      "clear glass piece", "wine bottle shards", "glass debris"
+    ],
+    "three_r_tip": "Reduce by handling carefully\nReuse unbroken bottles\nAvoid recycling broken glass in regular bins.",
+    "disposal": "Wrap securely and place in general waste.",
+    "toxicity": "Non-toxic but dangerous when sharp.",
+    "alternatives": ["Plastic bottles", "Steel bottles"],
+    "handling_precautions": "Wear gloves while disposing."
+  },
+  {
+    "name": "Expired Medicine",
+    "type": "Hazardous",
+    "associates": [
+      "old pills", "expired tablets", "outdated drugs",
+      "unused capsules", "pharmaceutical waste", "medicine trash",
+      "pill disposal", "discarded medication", "medical waste"
+    ],
+    "three_r_tip": "Reduce by buying small quantities\nReuse not recommended\nRecycle via pharmacy take-back.",
+    "disposal": "Return to pharmacy or hazardous waste collection.",
+    "toxicity": "Can contaminate water and soil.",
+    "alternatives": ["Natural remedies (cautiously)", "Smaller prescriptions"],
+    "handling_precautions": "Keep away from children and pets."
   }
 ]
