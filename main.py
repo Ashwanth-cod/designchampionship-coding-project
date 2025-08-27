@@ -8,56 +8,24 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import QFont, QPalette, QLinearGradient, QColor, QBrush, QPixmap
 from PyQt5.QtCore import Qt
 import json
-import io
 
 HF_TOKEN = "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"
-API_URL = "https://api-inference.huggingface.co/models/facebook/detr-resnet-50"
+API_URL = "https://api-inference.huggingface.co/models/yangy50/garbage-classification"
 HEADERS = {"Authorization": f"Bearer {HF_TOKEN}"}
 
-YOLO_TO_JSON_MAPPING = {
-    "cup": "Plastic Cup",
-    "bottle": "Water Bottle",
-    "can": "Aluminum Can",
-    "tin can": "Tin Can",
-    "battery": "Battery AA",
-    "food": "Food Waste",
-    "box": "Cereal Box",
-    "newspaper": "Newspaper",
-    "plastic bag": "Plastic Bag",
-    "paper": "Notebook",
-    "glass": "Glass Bottle",
-    "plate": "Ceramic Mug",
-    "fork": "Plastic Fork",
-    "spoon": "Plastic Spoon",
-    "knife": "Plastic Knife",
-    "toy": "Plastic Toy",
-    "straw": "Plastic Straw",
-    "milk carton": "Milk Carton",
-    "laptop": "Laptop",
-    "phone": "Mobile Phone",
-    "earphones": "Earphones",
-    "charger": "Charger Cable",
-    "keyboard": "Keyboard",
-    "mouse": "Computer Mouse",
-    "remote": "TV Remote",
-    "refrigerator": "Refrigerator",
-    "lamp": "LED Bulb",
-    "light bulb": "Light Bulb (Incandescent)",
-    "chair": "Plastic Chair",
-    "table": "Plastic Table",
-    "soap dish": "Plastic Soap Dish",
-    "mug": "Ceramic Mug",
-    "jar": "Glass Bottle"
-}
-
-
-def detect_objects_hf(image_path):
+def classify_image(image_path):
+    """Send image to Hugging Face classification model."""
     with open(image_path, "rb") as f:
         img_bytes = f.read()
     response = requests.post(API_URL, headers=HEADERS, files={"file": img_bytes})
     if response.status_code != 200:
+        print("❌ Error", response.status_code, ":", response.text)
         return []
-    return response.json()
+    try:
+        return response.json()
+    except Exception as e:
+        print("❌ JSON Parse Error:", e)
+        return []
 
 
 class WasteSorterApp(QMainWindow):
@@ -225,7 +193,7 @@ class WasteSorterApp(QMainWindow):
             lbl.setStyleSheet("color: red; font-size: 20px;")
             self.result_layout.addWidget(lbl)
 
-    # ===== Upload Image using HF API =====
+    # ===== Upload Image =====
     def upload_image(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Images (*.png *.jpg *.jpeg)")
         if not file_path:
@@ -236,19 +204,26 @@ class WasteSorterApp(QMainWindow):
         pixmap = QPixmap(file_path).scaled(600, 400, Qt.KeepAspectRatio)
         self.image_label.setPixmap(pixmap)
 
-        # Detect with Hugging Face DETR
-        results = detect_objects_hf(file_path)
-        detected_items = []
+        # Classify with Hugging Face
+        results = classify_image(file_path)
+        if not results:
+            lbl = QLabel("❌ Could not classify image.")
+            lbl.setStyleSheet("color: red; font-size: 20px;")
+            self.result_layout.addWidget(lbl)
+            return
 
-        if isinstance(results, list):
-            for obj in results:
-                label = obj.get("label", "").lower()
-                mapped_label = YOLO_TO_JSON_MAPPING.get(label, label)
-                detected_items.append(mapped_label)
+        # Pick highest score
+        best = max(results, key=lambda x: x["score"])
+        predicted_label = best["label"]
+        confidence = best["score"]
 
-        if detected_items:
-            self.search_bar.setText(detected_items[0])
-            self.search_item()
+        lbl = QLabel(f"✅ Predicted: {predicted_label} ({confidence:.2f})")
+        lbl.setStyleSheet("color: lightgreen; font-size: 22px; padding: 6px;")
+        self.result_layout.addWidget(lbl)
+
+        # Trigger search to display details
+        self.search_bar.setText(predicted_label)
+        self.search_item()
 
 
 if __name__ == "__main__":
