@@ -12,7 +12,7 @@ import json
 import os
 
 # ===================== CONFIG =====================
-HF_TOKEN = "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"  # Replace with your Hugging Face token
+HF_TOKEN = "hf"  # Replace with your Hugging Face token
 API_URL = "https://api-inference.huggingface.co/models/yangy50/garbage-classification"
 HEADERS = {"Authorization": f"Bearer {HF_TOKEN}"}
 
