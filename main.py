@@ -1,6 +1,6 @@
 import sys
-import requests
-import mimetypes
+import json
+import os
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLineEdit, QPushButton, QLabel, QListWidget, QScrollArea, QFileDialog,
@@ -8,41 +8,31 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QFont, QPalette, QLinearGradient, QColor, QBrush, QPixmap
 from PyQt5.QtCore import Qt
-import json
-import os
+from ultralytics import YOLO
+from google import genai
+from google.genai import types
 
 # ===================== CONFIG =====================
-HF_TOKEN = "hf"  # Replace with your Hugging Face token
-API_URL = "https://api-inference.huggingface.co/models/yangy50/garbage-classification"
-HEADERS = {"Authorization": f"Bearer {HF_TOKEN}"}
+API_KEY = "AIzaSyAAsF1Q6vFVxuWbsKWjToLigZc0Zi_f-5o"
+YOLO_MODEL_PATH = "best.pt"
 
-
-# ===================== CLASSIFIER =====================
-def classify_image(image_path):
-    """Send image to Hugging Face classification model."""
-    mime_type, _ = mimetypes.guess_type(image_path)
-    if mime_type is None:
-        mime_type = "image/jpeg"  # fallback
-
-    with open(image_path, "rb") as f:
-        img_bytes = f.read()
-
-    response = requests.post(
-        API_URL,
-        headers={**HEADERS, "Content-Type": mime_type},
-        data=img_bytes
-    )
-
-    if response.status_code != 200:
-        print("❌ Error", response.status_code, ":", response.text)
-        return []
-
+# ===================== GEMINI TIP =====================
+def get_disposal_tip(item_name: str) -> str:
     try:
-        return response.json()
+        client = genai.Client(api_key=API_KEY)
+        prompt = (
+            f"Give me a short disposal tip for '{item_name}'. "
+            "The answer must be exactly 3 lines. "
+            "Keep it simple, clear, and eco-friendly, formatted as a paragraph."
+        )
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-lite",
+            contents=prompt,
+            config=types.GenerateContentConfig(temperature=0.5, max_output_tokens=200)
+        )
+        return response.text.strip() if response and response.text else "⚠️ No response from Gemini."
     except Exception as e:
-        print("❌ JSON Parse Error:", e)
-        return []
-
+        return f"❌ Error: {e}"
 
 # ===================== APP =====================
 class WasteSorterApp(QMainWindow):
@@ -50,6 +40,9 @@ class WasteSorterApp(QMainWindow):
         super().__init__()
         self.setWindowTitle("♻️ Waste Sorter")
         self.showMaximized()
+
+        self.font_large = QFont("Arial", 28, QFont.Bold)
+        self.font_mid = QFont("Arial", 16)
 
         # Background gradient
         palette = QPalette()
@@ -59,16 +52,14 @@ class WasteSorterApp(QMainWindow):
         palette.setBrush(QPalette.Window, QBrush(gradient))
         self.setPalette(palette)
 
-        # Fonts
-        self.font_large = QFont("Arial", 28, QFont.Bold)
-        self.font_mid = QFont("Arial", 16)
-        self.font_res = QFont("Arial", 20)
-
         # Load JSON data
-        with open("waste_items.json", "r") as f:
+        with open("assets/waste_items.json", "r", encoding="utf-8") as f:
             self.waste_data = json.load(f)
 
-        # Central widget layout
+        # Load YOLO model
+        self.yolo_model = YOLO(YOLO_MODEL_PATH)
+
+        # Central layout
         central = QWidget()
         main_layout = QHBoxLayout(central)
         main_layout.setContentsMargins(30, 30, 30, 30)
@@ -114,6 +105,12 @@ class WasteSorterApp(QMainWindow):
         btn_upload.clicked.connect(self.upload_image)
         left_layout.addWidget(btn_upload)
 
+        btn_refresh = QPushButton("Refresh")
+        btn_refresh.setFont(self.font_mid)
+        btn_refresh.setStyleSheet("background: #ff9800; color: black; border-radius: 12px; padding: 10px;")
+        btn_refresh.clicked.connect(self.clear_results)
+        left_layout.addWidget(btn_refresh)
+
         self.image_label = QLabel("Upload or take an image")
         self.image_label.setAlignment(Qt.AlignCenter)
         self.image_label.setStyleSheet("background: #1e1e1e; color: white; border-radius: 12px;")
@@ -154,7 +151,7 @@ class WasteSorterApp(QMainWindow):
         main_layout.addWidget(self.phone, 7)
         self.setCentralWidget(central)
 
-    # ===== Suggestion handling =====
+    # ===== Suggestions handling =====
     def show_suggestions(self, text):
         self.suggestion_list.clear()
         text = text.strip().lower()
@@ -170,31 +167,34 @@ class WasteSorterApp(QMainWindow):
 
     def use_suggestion(self, item):
         self.search_bar.setText(item.text())
-        self.search_item()
         self.suggestion_list.hide()
+        self.search_item()
 
-    # ===== Clear previous results =====
+    # ===== Clear results =====
     def clear_results(self):
         for i in reversed(range(self.result_layout.count())):
             widget = self.result_layout.itemAt(i).widget()
             if widget:
                 widget.deleteLater()
+        self.search_bar.clear()
+        self.image_label.setText("Upload or take an image")
+        self.suggestion_list.hide()
 
-    # ===== Display item (now with reference image) =====
-    def display_item(self, item):
-        # --- Reference Image (if available) ---
-        if "image" in item and item["image"]:
-            img_label = QLabel()
-            if os.path.exists(item["image"]):  # local file
-                pixmap = QPixmap(item["image"]).scaled(400, 300, Qt.KeepAspectRatio)
-                img_label.setPixmap(pixmap)
-            else:
-                img_label.setText("📷 Reference image missing")
-                img_label.setStyleSheet("color: gray; font-size: 16px;")
-            img_label.setAlignment(Qt.AlignCenter)
-            self.result_layout.addWidget(img_label)
+    # ===== Display item =====
+    def display_item(self, item, show_reference=True):
+        if show_reference:
+            ref_img_path = f"assets/reference/{item['name'].lower().replace(' ', '-')}.png"
+            if os.path.exists(ref_img_path):
+                MAX_WIDTH = 400
+                MAX_HEIGHT = 400
+                pixmap = QPixmap(ref_img_path).scaled(
+                    MAX_WIDTH, MAX_HEIGHT, Qt.KeepAspectRatio, Qt.SmoothTransformation
+                )
+                self.image_label.setPixmap(pixmap)
 
-        # --- Info Card ---
+        item_with_tip = item.copy()
+        item_with_tip["disposal_tip"] = get_disposal_tip(item["name"]) or "⚠️ No disposal tip available."
+
         card = QFrame()
         card.setStyleSheet("""
             QFrame {
@@ -210,19 +210,31 @@ class WasteSorterApp(QMainWindow):
         key_style = "color: #00e676; font-size: 18px; font-weight: bold;"
         value_style = "color: white; font-size: 18px;"
 
-        fields = ["name", "type", "three_r_tip", "toxicity", "alternatives", "handling_precautions"]
-        row = 0
-        for field in fields:
+        fields = [
+            "name", "waste_category", "three_r_tip",
+            "toxicity", "alternatives", "handling_precautions",
+            "disposal_tip"
+        ]
+
+        for row, field in enumerate(fields):
+            if field not in item_with_tip:
+                continue
             key = QLabel(field.replace("_", " ").title() + ":")
             key.setStyleSheet(key_style)
-            val_text = item[field] if field != "alternatives" else ", ".join(item[field])
+            key.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+            key.setTextInteractionFlags(Qt.TextSelectableByMouse)
+
+            val_raw = item_with_tip[field]
+            val_text = ", ".join(str(v) for v in val_raw) if isinstance(val_raw, list) else str(val_raw)
+
             value = QLabel(val_text)
             value.setStyleSheet(value_style)
             value.setWordWrap(True)
+            value.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+            value.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
-            grid.addWidget(key, row, 0, alignment=Qt.AlignTop)
-            grid.addWidget(value, row, 1, alignment=Qt.AlignTop)
-            row += 1
+            grid.addWidget(key, row, 0)
+            grid.addWidget(value, row, 1)
 
         card.setLayout(grid)
         self.result_layout.addWidget(card)
@@ -230,61 +242,61 @@ class WasteSorterApp(QMainWindow):
     # ===== Text Search =====
     def search_item(self):
         query = self.search_bar.text().strip().lower()
-        self.clear_results()
         if not query:
-            lbl = QLabel("⚠ Please type something to search.")
-            lbl.setStyleSheet("color: red; font-size: 20px;")
-            self.result_layout.addWidget(lbl)
             return
-
-        found = False
-        for item in self.waste_data:
-            name_lower = item['name'].lower()
-            associates_lower = [a.lower() for a in item.get('associates', [])]
-            if query == name_lower or query in associates_lower or any(query in assoc for assoc in associates_lower):
-                self.display_item(item)
-                found = True
-        if not found:
-            lbl = QLabel("⚠ Item not found.")
-            lbl.setStyleSheet("color: red; font-size: 20px;")
+        self.clear_results()
+        matches = [
+            item for item in self.waste_data
+            if query in item["name"].lower()
+            or any(query in a.lower() for a in item.get("associates", []))
+        ]
+        if matches:
+            for item in matches:
+                self.display_item(item, show_reference=True)
+        else:
+            lbl = QLabel(f"⚠ No match found for '{query}'")
+            lbl.setStyleSheet("color: yellow; font-size: 20px;")
             self.result_layout.addWidget(lbl)
 
-    # ===== Upload Image and classify =====
+    # ===== Image Upload =====
     def upload_image(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Images (*.png *.jpg *.jpeg)")
         if not file_path:
             return
         self.clear_results()
-
-        # Display uploaded image
         pixmap = QPixmap(file_path).scaled(600, 400, Qt.KeepAspectRatio)
         self.image_label.setPixmap(pixmap)
 
-        # Run classifier
-        results = classify_image(file_path)
+        try:
+            results = self.yolo_model(file_path)
+            probs = results[0].probs
+            if probs is None:
+                lbl = QLabel("⚠ YOLO did not return class probabilities.")
+                lbl.setStyleSheet("color: red; font-size: 20px;")
+                self.result_layout.addWidget(lbl)
+                return
 
-        if isinstance(results, list) and len(results) > 0:
-            lbl_title = QLabel("📊 Predictions:")
-            lbl_title.setStyleSheet("color: #00e676; font-size: 22px;")
-            self.result_layout.addWidget(lbl_title)
+            top_idx = int(probs.top1)
+            predicted_cat = results[0].names[top_idx].replace("_", " ")
 
-            for obj in results:
-                label = obj.get("label", "unknown").capitalize()
-                score = obj.get("score", 0.0) * 100
-                lbl = QLabel(f"• {label} — {score:.2f}%")
-                lbl.setStyleSheet("color: white; font-size: 18px; padding: 2px;")
+            # Populate suggestions only
+            matches = [item for item in self.waste_data if item.get("type", "").lower() == predicted_cat.lower()]
+            if matches:
+                self.suggestion_list.clear()
+                for item in matches:
+                    self.suggestion_list.addItem(item["name"])
+                self.suggestion_list.setVisible(True)
+            else:
+                lbl = QLabel(f"⚠ No items found in category '{predicted_cat}'.")
+                lbl.setStyleSheet("color: yellow; font-size: 20px;")
                 self.result_layout.addWidget(lbl)
 
-            # Auto-search the highest score label
-            top = max(results, key=lambda x: x.get("score", 0))
-            self.search_bar.setText(top["label"])
-            self.search_item()
-        else:
-            lbl = QLabel("⚠ No predictions received.")
+        except Exception as e:
+            lbl = QLabel(f"❌ YOLO error: {e}")
             lbl.setStyleSheet("color: red; font-size: 20px;")
             self.result_layout.addWidget(lbl)
 
-
+# ===================== MAIN =====================
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = WasteSorterApp()

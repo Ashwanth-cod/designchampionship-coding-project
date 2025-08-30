@@ -1,22 +1,14 @@
-# train_yolov8.py
 from ultralytics import YOLO
 
-# 1️⃣ Load a YOLOv8 model (choose 'yolov8n.pt' for nano, lightweight and fast)
-model = YOLO("yolov8n.pt")  
+# Load a lightweight classification model
+model = YOLO('yolov8n-cls.pt')  # pretrained
 
-# 2️⃣ Train the model
+# Train the model
 model.train(
-    data="dataset.yaml",  # path to your dataset YAML
-    imgsz=640,            # image size
-    epochs=100,           # small dataset: 100 epochs is reasonable
-    batch=2,              # small batch size for small dataset
-    workers=2,            # number of CPU threads for data loading
-    patience=20,          # early stopping if no improvement
-    optimizer="SGD",      # SGD is fine for small datasets
-    lr0=0.01,             # initial learning rate
-    augment=True,         # enable augmentation to avoid overfitting
-    cache=True            # cache images in RAM for faster training
+    data='assets/dataset',       # path to the folder with class subfolders
+    epochs=50,            # low for small dataset
+    imgsz=224,            # image size
+    batch=4,              # adjust for your GPU/CPU
+    name='waste_classifier',
+    split=0.2             # 20% of images will be used for validation automatically
 )
-
-# 3️⃣ Save trained model
-model.export(format="onnx")  # export to ONNX (optional)
