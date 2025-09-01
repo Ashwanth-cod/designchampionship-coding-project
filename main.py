@@ -183,7 +183,7 @@ class WasteSorterApp(QMainWindow):
     # ===== Display item =====
     def display_item(self, item, show_reference=True):
         if show_reference:
-            ref_img_path = f"assets/reference/{item['name'].lower().replace(' ', '-')}.png"
+            ref_img_path = f"assets/reference/{item['name'].title().replace(' ', '-')}.png"
             if os.path.exists(ref_img_path):
                 MAX_WIDTH = 400
                 MAX_HEIGHT = 400
