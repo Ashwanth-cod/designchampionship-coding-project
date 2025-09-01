@@ -1,1 +1,4 @@
-*.rar
+/assets/*.rar
+/training/*.rar
+/assets/dataset-spil
+runs
