@@ -69,7 +69,7 @@ class WasteSorterApp(QMainWindow):
         left_layout = QVBoxLayout()
         left_layout.setSpacing(20)
 
-        title = QLabel("♻️ Waste Sorter")
+        title = QLabel("♻️ Eco sort")
         title.setFont(self.font_large)
         title.setStyleSheet("color: white;")
         left_layout.addWidget(title)
